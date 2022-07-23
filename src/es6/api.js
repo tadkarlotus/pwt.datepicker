@@ -35,9 +35,11 @@ class API {
      * pd.show();
      */
     show () {
-        this.model.view.show();
-        this.model.options.onShow(this.model);
-        return this.model;
+        if (this.model) {
+            this.model.view.show();
+            this.model.options.onShow(this.model);
+            return this.model;
+        }
     }
 
     /**
@@ -60,9 +62,11 @@ class API {
      * pd.show();
      */
     hide () {
-        this.model.view.hide();
-        this.model.options.onHide(this.model);
-        return this.model;
+        if (this.model) {
+            this.model.view.hide();
+            this.model.options.onHide(this.model);
+            return this.model;
+        }
     }
 
     /**
@@ -71,9 +75,11 @@ class API {
      * pd.toggle();
      */
     toggle () {
-        this.model.view.toggle();
-        this.model.options.onToggle(this.model);
-        return this.model;
+        if (this.model) {
+            this.model.view.toggle();
+            this.model.options.onToggle(this.model);
+            return this.model;
+        }
     }
 
 

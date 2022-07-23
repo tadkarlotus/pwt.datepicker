@@ -12,8 +12,8 @@
     <meta name="HandheldFriendly" content="true"/>
     <!-- Demo Bootstrap Style -->
     <!-- ------------------------------------------------------------------------------------ -->
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/> -->
 
     <!-- Demo Font Embed -->
     <!-- ------------------------------------------------------------------------------------ -->
@@ -201,14 +201,16 @@
 
 <!-- Jquery (required dependency) -->
 <!-- ------------------------------------------------------------------------------------ -->
-<!--<script-->
-<!--src="https://code.jquery.com/jquery-3.2.1.min.js"-->
-<!--integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="-->
-<!--crossorigin="anonymous"></script>-->
-<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+</script>
+<!-- <script src="../bower_components/jquery/dist/jquery.js"></script> -->
 
 <!-- ------------------------------------------------------------------------------------ -->
-<script src="../bower_components/persian-date/dist/persian-date.min.js"></script>
+<!-- <script src="../bower_components/persian-date/dist/persian-date.min.js"></script> -->
+<script src="../assets/persian-date.min.js"></script>
 
 <!-- Datepicker main script -->
 <!-- ------------------------------------------------------------------------------------ -->
@@ -231,8 +233,13 @@
             initialValue: false,
             observer: true,
             format: 'YYYY/MM/DD',
+            extraValue: 'Hi, I am extra value!',
             timePicker: {
                 enabled: true
+            },
+            onSelect: function(unix, self){
+                console.log('datepicker select : ' + unix);
+                console.log('Extra object value: ' + self.options.extraValue);
             }
         });
 

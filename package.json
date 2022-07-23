@@ -1,5 +1,5 @@
 {
-  "name": "persian-datepicker",
+  "name": "@tadkarlotus/persian-datepicker",
   "version": "1.2.0",
   "main": "dist/js/persian-datepicker.js",
   "description": "jQuery datepicker plugin work with Iranian calendar.",
@@ -57,7 +57,8 @@
   ],
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server & grunt --dev",
-    "build": "rm -fR ./dist/js & rm -fR ./dist/css & rm -fR ./dist/doc & grunt",
+    "build-linux": "rm -fR ./dist/js & rm -fR ./dist/css & rm -fR ./dist/doc & grunt",
+    "build": "grunt",
     "doc": "grunt --doc",
     "test": "sass-lint -c .sass-lint.yml --verbose & ./node_modules/jshint/bin/jshint src/es6/*.js & ./node_modules/jshint/bin/jshint bower.json & ./node_modules/jshint/bin/jshint package.json && npm run eslint & npm run doctest",
     "sync-pkg": "sync-pkg",

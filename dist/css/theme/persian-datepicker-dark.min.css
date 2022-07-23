@@ -1,4 +1,11 @@
 /*
+** @tadkarlotus/persian-datepicker - v1.2.0
+** Reza Babakhani <babakhani.reza@gmail.com>
+** http://babakhani.github.io/PersianWebToolkit/docs/datepicker
+** Under MIT license 
+*/ 
+
+/*
 ** persian-datepicker - v1.2.0
 ** Reza Babakhani <babakhani.reza@gmail.com>
 ** http://babakhani.github.io/PersianWebToolkit/docs/datepicker

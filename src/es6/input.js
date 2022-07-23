@@ -134,6 +134,7 @@ class Input {
         $(this.elem).on('focus click', Helper.debounce(function (evt) {
             that.model.api.show();
             if (that.model.state.ui.isInline === false) {
+                $(this).blur();
                 $('body').unbind('click', closePickerHandler).bind('click', closePickerHandler);
             }
             if (Helper.isMobile) {

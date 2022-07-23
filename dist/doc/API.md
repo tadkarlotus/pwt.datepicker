@@ -23,8 +23,7 @@ get current option object
 **Kind**: instance property of [<code>API</code>](#API)  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-console.log(pd.options);
+var pd = $('.selector').persianDatepicker();console.log(pd.options);
 ```
 <a name="API+options"></a>
 
@@ -34,11 +33,7 @@ set options live
 **Kind**: instance property of [<code>API</code>](#API)  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-pd.options;
-//return current options
-pd.options = {};
-// set options and render datepicker with new options
+var pd = $('.selector').persianDatepicker();pd.options;//return current optionspd.options = {};// set options and render datepicker with new options
 ```
 <a name="API+show"></a>
 
@@ -48,8 +43,7 @@ make datepicker visible
 **Kind**: instance method of [<code>API</code>](#API)  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-pd.show();
+var pd = $('.selector').persianDatepicker();pd.show();
 ```
 <a name="API+getState"></a>
 
@@ -60,11 +54,7 @@ return datepicker current state
 **Since**: 1.0.0  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-var state = pd.getState();
-
-console.log(state.selected);
-console.log(state.view);
+var pd = $('.selector').persianDatepicker();var state = pd.getState();console.log(state.selected);console.log(state.view);
 ```
 <a name="API+hide"></a>
 
@@ -74,8 +64,7 @@ make datepicker invisible
 **Kind**: instance method of [<code>API</code>](#API)  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-pd.show();
+var pd = $('.selector').persianDatepicker();pd.show();
 ```
 <a name="API+toggle"></a>
 
@@ -85,8 +74,7 @@ toggle datepicker visibility state
 **Kind**: instance method of [<code>API</code>](#API)  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-pd.toggle();
+var pd = $('.selector').persianDatepicker();pd.toggle();
 ```
 <a name="API+destroy"></a>
 
@@ -96,8 +84,7 @@ destroy every thing clean dom and
 **Kind**: instance method of [<code>API</code>](#API)  
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-pd.destroy();
+var pd = $('.selector').persianDatepicker();pd.destroy();
 ```
 <a name="API+setDate"></a>
 
@@ -119,6 +106,5 @@ set selected date of datepicker accept unix timestamp
 
 **Example**  
 ```js
-var pd = $('.selector').persianDatepicker();
-pd.setDate(1382276091100)
+var pd = $('.selector').persianDatepicker();pd.setDate(1382276091100)
 ```

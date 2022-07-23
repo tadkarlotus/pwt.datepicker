@@ -5,13 +5,6 @@
 ** Under MIT license 
 */ 
 
-/*
-** persian-datepicker - v1.2.0
-** Reza Babakhani <babakhani.reza@gmail.com>
-** http://babakhani.github.io/PersianWebToolkit/docs/datepicker
-** Under MIT license 
-*/ 
-
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -334,9 +327,11 @@ var API = function () {
          * pd.show();
          */
         value: function show() {
-            this.model.view.show();
-            this.model.options.onShow(this.model);
-            return this.model;
+            if (this.model) {
+                this.model.view.show();
+                this.model.options.onShow(this.model);
+                return this.model;
+            }
         }
 
         /**
@@ -364,9 +359,11 @@ var API = function () {
     }, {
         key: 'hide',
         value: function hide() {
-            this.model.view.hide();
-            this.model.options.onHide(this.model);
-            return this.model;
+            if (this.model) {
+                this.model.view.hide();
+                this.model.options.onHide(this.model);
+                return this.model;
+            }
         }
 
         /**
@@ -378,9 +375,11 @@ var API = function () {
     }, {
         key: 'toggle',
         value: function toggle() {
-            this.model.view.toggle();
-            this.model.options.onToggle(this.model);
-            return this.model;
+            if (this.model) {
+                this.model.view.toggle();
+                this.model.options.onToggle(this.model);
+                return this.model;
+            }
         }
 
         /**
@@ -1295,15 +1294,15 @@ var Config = {
    <table cellspacing="0" class="table-days">
    <tbody>
    {{#days.list}}
-    <tr>
+     <tr>
    {{#.}}
-    {{#enabled}}
+     {{#enabled}}
    <td data-unix="{{dataUnix}}" ><span  class="{{#otherMonth}}other-month{{/otherMonth}} {{#selected}}selected{{/selected}}">{{title}}</span></td>
    {{/enabled}}
    {{^enabled}}
    <td data-unix="{{dataUnix}}" class="disabled"><span class="{{#otherMonth}}other-month{{/otherMonth}}">{{title}}</span></td>
    {{/enabled}}
-    {{/.}}
+     {{/.}}
    </tr>
    {{/days.list}}
    </tbody>
@@ -1312,7 +1311,7 @@ var Config = {
    </div>
    {{/days.viewMode}}
    {{/days.enabled}}
-    {{#month.enabled}}
+     {{#month.enabled}}
    {{#month.viewMode}}
    <div class="datepicker-month-view">
    {{#month.list}}
@@ -1326,7 +1325,7 @@ var Config = {
    </div>
    {{/month.viewMode}}
    {{/month.enabled}}
-    {{#year.enabled }}
+     {{#year.enabled }}
    {{#year.viewMode }}
    <div class="datepicker-year-view" >
    {{#year.list}}
@@ -1340,7 +1339,7 @@ var Config = {
    </div>
    {{/year.viewMode }}
    {{/year.enabled }}
-    </div>
+     </div>
    {{#time}}
    {{#enabled}}
    <div class="datepicker-time-view">
@@ -1379,7 +1378,7 @@ var Config = {
    </div>
    {{/enabled}}
    {{/time}}
-    {{#toolbox}}
+     {{#toolbox}}
    {{#enabled}}
    <div class="toolbox ">
    <div class="btn-today">{{text.btnToday}}</div>
@@ -1611,6 +1610,7 @@ var Input = function () {
             $(this.elem).on('focus click', Helper.debounce(function (evt) {
                 that.model.api.show();
                 if (that.model.state.ui.isInline === false) {
+                    $(this).blur();
                     $('body').unbind('click', closePickerHandler).bind('click', closePickerHandler);
                 }
                 if (Helper.isMobile) {
@@ -1953,7 +1953,7 @@ var Navigator = function () {
                 $(document).on('click', '#' + that.model.view.id + ' .up-btn', function () {
                     var timekey = $(this).data('time-key');
                     that.timeUp(timekey);
-                    that.model.options.onSelect(that.model.state.selected.unixDate);
+                    that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
                 });
 
                 /**
@@ -1962,7 +1962,7 @@ var Navigator = function () {
                 $(document).on('click', '#' + that.model.view.id + ' .down-btn', function () {
                     var timekey = $(this).data('time-key');
                     that.timeDown(timekey);
-                    that.model.options.onSelect(that.model.state.selected.unixDate);
+                    that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
                 });
             }
 
@@ -1994,7 +1994,7 @@ var Navigator = function () {
                         that.model.view.markSelectedDay();
                     }
                     that.model.options.dayPicker.onSelect(thisUnix);
-                    that.model.options.onSelect(thisUnix);
+                    that.model.options.onSelect(thisUnix, that.model);
                 });
             }
 
@@ -2021,7 +2021,7 @@ var Navigator = function () {
                     that.model.state.setViewDateTime('month', month);
                     that.model.view.render();
                     that.model.options.monthPicker.onSelect(month);
-                    that.model.options.onSelect(that.model.state.selected.unixDate);
+                    that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
                 });
             }
 
@@ -2046,7 +2046,7 @@ var Navigator = function () {
                     that.model.state.setViewDateTime('year', year);
                     that.model.view.render();
                     that.model.options.yearPicker.onSelect(year);
-                    that.model.options.onSelect(that.model.state.selected.unixDate);
+                    that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
                 });
             }
         }
