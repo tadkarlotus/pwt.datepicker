@@ -71,6 +71,12 @@ class View {
      * @desc remove datepicker container element from dom
      */
     destroy () {
+        $(document).off('click', this.model.yearClickHandler);
+        $(document).off('click', this.model.monthClickHandler);
+        $(document).off('click', this.model.dayClickHandler);
+        $(document).off('click', this.model.timeDownClickHandler);
+        $(document).off('click', this.model.timeUpClickHandler);
+        $(document).off('click', this.model.navigatorClickHandler);
         this.$container.remove();
     }
 

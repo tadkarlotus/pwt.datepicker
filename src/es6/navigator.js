@@ -124,7 +124,6 @@ class Navigator {
         }, 300);
     }
 
-
     /**
      * @desc attach dom events
      * @todo remove jquery
@@ -137,7 +136,7 @@ class Navigator {
             /**
              * @description navigator click event
              */
-            $(document).on('click', '#' + that.model.view.id + ' .pwt-btn', function () {
+            this.model.navigatorClickHandler =  function () {
                 if ($(this).is('.pwt-btn-next')) {
                     that.model.state.navigate('next');
                     that.model.view.render();
@@ -153,7 +152,8 @@ class Navigator {
                     that.model.view.render();
                     that.model.options.navigator.onPrev(that.model);
                 }
-            });
+            }
+            $(document).on('click', '#' + that.model.view.id + ' .pwt-btn', this.model.navigatorClickHandler);
         }
 
 
@@ -165,20 +165,22 @@ class Navigator {
             /**
              * @description time up btn click event
              */
-            $(document).on('click', '#' + that.model.view.id + ' .up-btn', function () {
+            this.model.timeUpClickHandler = function () {
                 let timekey = $(this).data('time-key');
                 that.timeUp(timekey);
                 that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
-            });
+            }
+            $(document).on('click', '#' + that.model.view.id + ' .up-btn', this.model.timeUpClickHandler);
 
             /**
              * @description time down btn click event
              */
-            $(document).on('click', '#' + that.model.view.id + ' .down-btn', function () {
+            this.model.timeDownClickHandler = function () {
                 let timekey = $(this).data('time-key');
                 that.timeDown(timekey);
                 that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
-            });
+            }
+            $(document).on('click', '#' + that.model.view.id + ' .down-btn', this.model.timeDownClickHandler);
 
         }
 
@@ -191,7 +193,7 @@ class Navigator {
             /**
              * @description days click event
              */
-            $(document).on('click', '#' + that.model.view.id + ' .datepicker-day-view td:not(.disabled)', function () {
+             this.model.dayClickHandler = function () {
                 let thisUnix = $(this).data('unix'), mustRender;
                 that.model.state.setSelectedDateTime('unix', thisUnix);
                 if (that.model.state.selected.month !== that.model.state.view.month) {
@@ -211,7 +213,8 @@ class Navigator {
                 }
                 that.model.options.dayPicker.onSelect(thisUnix);
                 that.model.options.onSelect(thisUnix, that.model);
-            });
+            }
+            $(document).on('click', '#' + that.model.view.id + ' .datepicker-day-view td:not(.disabled)', this.model.dayClickHandler);
         }
 
 
@@ -223,7 +226,7 @@ class Navigator {
             /**
              * @description month click event
              */
-            $(document).on('click', '#' + that.model.view.id + ' .datepicker-month-view .month-item:not(.month-item-disable)', function () {
+            this.model.monthClickHandler = function () {
                 let month = $(this).data('month');
                 let year = $(this).data('year');
                 that.model.state.switchViewModeTo('day');
@@ -239,7 +242,8 @@ class Navigator {
                 that.model.view.render();
                 that.model.options.monthPicker.onSelect(month);
                 that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
-            });
+            }
+            $(document).on('click', '#' + that.model.view.id + ' .datepicker-month-view .month-item:not(.month-item-disable)', this.model.monthClickHandler);
         }
 
 
@@ -251,7 +255,7 @@ class Navigator {
             /**
              * @description year click event
              */
-            $(document).on('click', '#' + that.model.view.id + ' .datepicker-year-view .year-item:not(.year-item-disable)', function () {
+            this.model.yearClickHandler = function () {
                 let year = $(this).data('year');
                 that.model.state.switchViewModeTo('month');
                 if (!that.model.options.onlySelectOnDate) {
@@ -265,7 +269,8 @@ class Navigator {
                 that.model.view.render();
                 that.model.options.yearPicker.onSelect(year);
                 that.model.options.onSelect(that.model.state.selected.unixDate, that.model);
-            });
+            }
+            $(document).on('click', '#' + that.model.view.id + ' .datepicker-year-view .year-item:not(.year-item-disable)', this.model.yearClickHandler);
         }
     }
 }
